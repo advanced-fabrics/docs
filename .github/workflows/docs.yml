@@ -1,0 +1,27 @@
+name: Documentation
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  boundaries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reject private endpoints and credentials
+        run: |
+          ! git grep -nE '(networking\.re8ch\.com|registry\.re8ch\.com|CF_API_TOKEN|BEGIN (RSA |OPENSSH )?PRIVATE KEY)' -- ':!*.yml'
+
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check site structure and links
+        run: python3 scripts/check_site.py
+      - name: Check JavaScript syntax
+        run: node --check site.js
