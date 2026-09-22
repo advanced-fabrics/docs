@@ -1,0 +1,46 @@
+site_name: Advanced Fabrics
+site_url: https://docs.advfab.org/
+site_description: Documentation for observable, programmable, provider-neutral cloud-native network fabrics.
+repo_name: advanced-fabrics/docs
+repo_url: https://github.com/advanced-fabrics/docs
+edit_uri: edit/main/docs/
+copyright: Advanced Fabrics · Apache-2.0 · Independent open source project
+
+nav:
+  - Overview: index.md
+  - Quick start: quick-start.md
+  - Concepts: concepts.md
+  - Architecture: architecture.md
+  - Security and safety: security.md
+  - Specifications: specifications.md
+  - Community: community.md
+
+theme:
+  name: material
+  language: en
+  logo: assets/advfab-mark.png
+  favicon: assets/advfab-mark.png
+  font: false
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+  features:
+    - navigation.sections
+    - navigation.footer
+    - content.action.edit
+    - search.suggest
+    - search.highlight
+    - toc.follow
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - pymdownx.details
+  - pymdownx.superfences
+
+extra_css:
+  - assets/extra.css

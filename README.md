@@ -1,25 +1,26 @@
-# Advanced Fabrics Documentation
+# Advanced Fabrics documentation
 
-Public, dependency-free documentation for [docs.advfab.org](https://docs.advfab.org). Normative protocol and API material lives in [`advanced-fabrics/spec`](https://github.com/advanced-fabrics/spec) and [`advanced-fabrics/api`](https://github.com/advanced-fabrics/api).
+The public wiki at [docs.advfab.org](https://docs.advfab.org) is written in Markdown and rendered with [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/). GitHub Actions builds and publishes the static result to GitHub Pages.
+
+## Edit a page
+
+Edit a file in [`docs/`](docs/), such as [`docs/index.md`](docs/index.md). Open a pull request. After the required checks pass and the PR merges, GitHub Actions rebuilds and publishes the site. Pages, links, and headings are ordinary Markdown. New pages need an entry in [`mkdocs.yml`](mkdocs.yml) under `nav`.
+
+The site does not require editing generated HTML or running a wiki server.
+
+## Preview locally
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+mkdocs serve
+```
+
+Open `http://127.0.0.1:8000/`. Run `mkdocs build --strict` before submitting changes. The `.venv/` and `site/` directories are ignored by Git.
 
 ## Publishing
 
-GitHub Pages publishes `main` from the repository root. The `CNAME` file binds `docs.advfab.org`; Cloudflare proxies the domain. No build command or package dependencies are required.
+The `Documentation` workflow validates every pull request and deploys `main` through GitHub Pages Actions. `docs/CNAME` preserves `docs.advfab.org`. The logo in `docs/assets/advfab-mark.png` is a local copy of the public [Advanced Fabrics organization avatar](https://github.com/advanced-fabrics); the shared `re8ch/brand-assets` repository did not contain an AdvFab asset when this site was set up.
 
-Each documentation page is a directory with an `index.html` file. Keep navigation and the page index in `site.js` in sync when adding pages. All pages use `styles.css` and include a canonical URL, descriptive title, main landmark, skip link, and explicit section headings.
-
-## Local preview
-
-Run `python3 -m http.server 8000` from this directory and open `http://localhost:8000/`.
-
-## Project status
-
-AdvFab is an independent open source project and is not a CNCF project. The 1.0 release has not been declared generally available. Check the [roadmap](https://github.com/advanced-fabrics/community/blob/main/ROADMAP.md) and published release artifacts before making compatibility or conformance claims.
-
-## Visual identity
-
-`assets/advfab-mark.png` is a local copy of the public
-[Advanced Fabrics organization avatar](https://github.com/advanced-fabrics).
-The shared `re8ch/brand-assets` repository did not contain an AdvFab asset when
-this design was created. Replace the local copy if an official brand asset is
-published there later.
+AdvFab is an independent open source project and is not a CNCF project. Version 1.0 has not been declared generally available; see the [roadmap](https://github.com/advanced-fabrics/community/blob/main/ROADMAP.md).

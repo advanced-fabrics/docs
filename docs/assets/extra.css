@@ -1,0 +1,41 @@
+:root {
+  --md-primary-fg-color: #172633;
+  --md-primary-bg-color: #ffffff;
+  --md-accent-fg-color: #5146cf;
+  --md-typeset-a-color: #3258b8;
+}
+.md-header { border-bottom: 1px solid #e3e9ef; box-shadow: none; }
+.md-tabs { border-bottom: 1px solid #e3e9ef; }
+.md-typeset h1, .md-typeset h2 { font-weight: 700; letter-spacing: -.035em; }
+.md-typeset h1 { color: #172633; }
+.md-typeset h2 { border-bottom: 1px solid #e9edf2; padding-bottom: .35em; }
+.md-typeset .admonition { box-shadow: none; border-radius: .35rem; }
+.md-typeset a { text-underline-offset: .16em; }
+.md-typeset a:hover { text-decoration: underline; }
+.md-logo img { width: 1.6rem !important; height: 1.6rem !important; object-fit: contain; }
+/* The overview index is a Markdown list; present it as a compact wiki map. */
+#start-here + ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .65rem;
+  padding: 0;
+  list-style: none;
+}
+#start-here + ul > li {
+  margin: 0;
+  padding: .8rem .95rem;
+  border: 1px solid #e2e8f0;
+  border-radius: .4rem;
+  background: #fff;
+  font-size: .85rem;
+  transition: border-color .15s, box-shadow .15s;
+}
+#start-here + ul > li:hover {
+  border-color: #b7b8eb;
+  box-shadow: 0 .2rem .75rem #1726330a;
+}
+#start-here + ul > li a { display: block; font-weight: 700; }
+@media (max-width: 44em) {
+  #start-here + ul { grid-template-columns: 1fr; }
+}
+#start-here + ul > li a::after { content: " →"; font-weight: 500; }
