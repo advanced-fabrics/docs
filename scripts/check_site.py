@@ -11,6 +11,7 @@ class Page(HTMLParser):
         super().__init__()
         self.ids = set()
         self.links = []
+        self.assets = []
         self.canonicals = []
         self.h1 = 0
         self.main = 0
@@ -21,6 +22,10 @@ class Page(HTMLParser):
             self.ids.add(attrs["id"])
         if tag == "a":
             self.links.append(attrs.get("href", ""))
+        if tag in ("img", "script") and attrs.get("src"):
+            self.assets.append(attrs["src"])
+        if tag == "link" and attrs.get("rel") in ("stylesheet", "icon"):
+            self.assets.append(attrs.get("href", ""))
         if tag == "link" and attrs.get("rel") == "canonical":
             self.canonicals.append(attrs.get("href"))
         if tag == "h1":
@@ -44,6 +49,12 @@ for path in pages:
     route = "/" if path == ROOT / "index.html" else f"/{path.parent.relative_to(ROOT)}/"
     if page.canonicals != [f"https://docs.advfab.org{route}"]:
         errors.append(f"{path}: invalid canonical URL")
+    for asset in page.assets:
+        url = urlsplit(asset)
+        if url.scheme or url.netloc or not asset.startswith("/"):
+            errors.append(f"{path}: asset must be local: {asset}")
+        elif not (ROOT / url.path.lstrip("/")).is_file():
+            errors.append(f"{path}: missing asset {asset}")
     for href in page.links:
         url = urlsplit(href)
         if url.scheme or url.netloc:
