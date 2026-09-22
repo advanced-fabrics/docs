@@ -15,3 +15,11 @@ Run `python3 -m http.server 8000` from this directory and open `http://localhost
 ## Project status
 
 AdvFab is an independent open source project and is not a CNCF project. The 1.0 release has not been declared generally available. Check the [roadmap](https://github.com/advanced-fabrics/community/blob/main/ROADMAP.md) and published release artifacts before making compatibility or conformance claims.
+
+## Visual identity
+
+`assets/advfab-mark.png` is a local copy of the public
+[Advanced Fabrics organization avatar](https://github.com/advanced-fabrics).
+The shared `re8ch/brand-assets` repository did not contain an AdvFab asset when
+this design was created. Replace the local copy if an official brand asset is
+published there later.
